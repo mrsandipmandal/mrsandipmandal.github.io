@@ -4,105 +4,687 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sandip Mandal - Developer Portfolio</title>
-
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f1f5f9;
+            --accent: #06b6d4;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+        }
+
         body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--secondary);
+            overflow-x: hidden;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            position: relative;
+        }
+
         .profile-img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 4px solid #0d6efd;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            object-fit: cover;
+            animation: fadeInUp 1s ease-out;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-        .section-title {
-            border-bottom: 2px solid #0d6efd;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+
+        .profile-img:hover {
+            transform: scale(1.05);
         }
-        a {
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
             text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            margin-top: -50px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 3;
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .about-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--secondary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.15);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            padding: 1.5rem;
+            color: var(--white);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover a {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .lead {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(99, 102, 241, 0.2);
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: var(--gradient);
+            width: 0%;
+            transition: width 0.1s ease;
         }
     </style>
 </head>
 <body>
-
-    <div class="container py-5">
-
-        <!-- Header -->
-        <div class="text-center mb-5">
-            <img src="https://avatars.githubusercontent.com/u/75414705?v=4" alt="Profile Picture" class="profile-img mb-3">
-            <h1>Hi there 👋 I'm Sandip Mandal</h1>
-            <p class="lead">Welcome to my GitHub profile!</p>
-        </div>
-
-        <!-- About Me -->
-        <div class="mb-5">
-            <h2 class="section-title">🚀 About Me</h2>
-            <ul>
-                <li>💻 I'm a passionate developer working with a wide range of technologies like <strong>PHP, Laravel, Django, Flask, FastAPI, Next.js, React Native</strong>, and more.</li>
-                <li>📚 I enjoy learning new frameworks and tools, and building efficient, scalable applications.</li>
-                <li>🌱 Currently exploring <strong>Docker, Firebase, Appwrite</strong>, and advanced backend solutions.</li>
-                <li>🎯 I love contributing to open-source projects and solving real-world problems.</li>
-            </ul>
-        </div>
-
-        <!-- Technologies & Tools -->
-        <div class="mb-5">
-            <h2 class="section-title">🛠 Technologies & Tools</h2>
-            <ul>
-                <li><strong>Languages:</strong> PHP, JavaScript, Python</li>
-                <li><strong>Frameworks:</strong> Laravel, Django, Flask, FastAPI, Next.js, React Native, Node.js</li>
-                <li><strong>Databases:</strong> Firebase, Appwrite, MySQL, MongoDB</li>
-                <li><strong>Tools & Platforms:</strong> Docker, Git, VS Code, jQuery</li>
-                <li><strong>Others:</strong> HTML, CSS, REST APIs</li>
-            </ul>
-        </div>
-
-        <!-- Projects -->
-        <div class="mb-5">
-            <h2 class="section-title">📂 Projects</h2>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/laravel-api" target="_blank">Laravel Api</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/jwtToken" target="_blank">PHP JWT Token</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/crawled" target="_blank">PHP Web Crawler</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/socal_login" target="_blank">Socal Media Login</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/excel_search_app" target="_blank">Django Excel Search</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/Flask-Face-Recognition-Attendance-System" target="_blank">Flask Face Recognition Attendance System</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/FaceAttendance" target="_blank">Django based face recognition attendance system</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/youtube_downloader" target="_blank">Youtube Downloader</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/mini-llm" target="_blank">Mini LLM Model</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/compression" target="_blank">Compress</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/next_admin" target="_blank">NextJs Admin</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/reactNativeNavigations" target="_blank">React Native Navigations</a></li>
-                <li class="list-group-item"><a href="https://github.com/mrsandipmandal/MyNewProject" target="_blank">React Native Project</a></li>
-            </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="text-center mb-5">
-            <h2 class="section-title">📫 How to reach me</h2>
-            <p>📧 Email: <a href="mailto:mr_sandip@outlook.com">mr_sandip@outlook.com</a></p>
-            <p>💼 <a href="https://in.linkedin.com/in/mr-sandip-mandal" target="_blank">LinkedIn</a></p>
-            <p>🐦 <a href="https://x.com/mr_sandipmandal" target="_blank">Twitter/X</a></p>
-        </div>
-
-        <div class="text-center">
-            <p>Thanks for visiting my profile! 🚀</p>
-        </div>
-
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
     </div>
 
-    <!-- Bootstrap JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="https://avatars.githubusercontent.com/u/75414705?v=4" alt="Sandip Mandal" class="profile-img">
+                <h1>Hi there 👋 I'm Sandip Mandal</h1>
+                <p class="lead">Full-Stack Developer & Tech Enthusiast</p>
+                <a href="#about" class="cta-button">
+                    <i class="fas fa-arrow-down"></i> Explore My Work
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title">🚀 About Me</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Passionate Developer</h3>
+                        <p>I'm a passionate developer working with a wide range of technologies like PHP, Laravel, Django, Flask, FastAPI, Next.js, React Native, and more.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Continuous Learner</h3>
+                        <p>I enjoy learning new frameworks and tools, building efficient, scalable applications, and staying up-to-date with the latest tech trends.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Innovation Focused</h3>
+                        <p>Currently exploring Docker, Firebase, Appwrite, and advanced backend solutions to create cutting-edge applications.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Open Source Contributor</h3>
+                        <p>I love contributing to open-source projects and solving real-world problems through collaborative development.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2 class="section-title">🛠 Technologies & Tools</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Appwrite</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Platforms</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h2 class="section-title">📂 Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Laravel API</div>
+                            <div class="project-description">RESTful API built with Laravel framework</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/laravel-api" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Face Recognition Attendance</div>
+                            <div class="project-description">AI-powered attendance system using Flask</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/Flask-Face-Recognition-Attendance-System" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Mini LLM Model</div>
+                            <div class="project-description">Custom language model implementation</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/mini-llm" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Next.js Admin</div>
+                            <div class="project-description">Modern admin dashboard with Next.js</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/next_admin" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">React Native Navigation</div>
+                            <div class="project-description">Mobile app navigation patterns</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/reactNativeNavigations" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">YouTube Downloader</div>
+                            <div class="project-description">Video download utility application</div>
+                        </div>
+                        <div class="project-body">
+                            <a href="https://github.com/mrsandipmandal/youtube_downloader" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h2 class="section-title">📫 Let's Connect</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:mr_sandip@outlook.com">mr_sandip@outlook.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <a href="https://in.linkedin.com/in/mr-sandip-mandal" target="_blank">Connect with me</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-twitter"></i>
+                        <h3>Twitter/X</h3>
+                        <a href="https://x.com/mr_sandipmandal" target="_blank">Follow me</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/mrsandipmandal" target="_blank">View my code</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Thanks for visiting my profile! 🚀</p>
+            <p>&copy; 2024 Sandip Mandal. Built with ❤️ and modern web technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
