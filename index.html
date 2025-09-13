@@ -4,88 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mrsandip Mandal - Developer Portfolio</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #f8f9fa;
         }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        img.profile {
+        .profile-img {
             width: 150px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 50%;
-            border: 3px solid #007bff;
-        }
-        h1 {
-            margin-top: 10px;
-            font-size: 2.2em;
-        }
-        h2 {
-            color: #007bff;
-            margin-top: 20px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .social-links a {
-            margin: 0 10px;
+            border: 4px solid #0d6efd;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="https://avatars.githubusercontent.com/u/your_github_id?v=4" alt="Profile Picture" class="profile" />
-        <h1>Mrsandip Mandal</h1>
-        <p>Web Developer | Open Source Enthusiast | Tech Blogger</p>
-        <div class="social-links">
-            <a href="https://github.com/mrsandipmandal" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/mrsandipmandal" target="_blank">LinkedIn</a>
-            <a href="mailto:your.email@example.com">Email</a>
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <img src="https://avatars.githubusercontent.com/u/your_github_id?v=4" alt="Profile Picture" class="profile-img mb-3">
+            <h1>Mrsandip Mandal</h1>
+            <p class="lead">Web Developer | Open Source Enthusiast | Tech Blogger</p>
+            <div>
+                <a href="https://github.com/mrsandipmandal" class="btn btn-outline-primary btn-sm mx-1" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/mrsandipmandal" class="btn btn-outline-primary btn-sm mx-1" target="_blank">LinkedIn</a>
+                <a href="mailto:your.email@example.com" class="btn btn-outline-primary btn-sm mx-1">Email</a>
+            </div>
         </div>
-    </header>
 
-    <section>
-        <h2>About Me</h2>
-        <p>
-            I'm a passionate web developer with experience in building responsive and user-friendly websites. I love contributing to open-source projects and sharing knowledge through blogs and tutorials.
-        </p>
-    </section>
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <h2>About Me</h2>
+                <p>
+                    I'm a passionate web developer with experience in building responsive and user-friendly websites. I love contributing to open-source projects and sharing knowledge through blogs and tutorials.
+                </p>
+            </div>
+        </div>
 
-    <section>
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>PHP, Laravel, Flask</li>
-            <li>React, Next.js</li>
-            <li>Docker, Firebase, Appwrite</li>
-            <li>Node.js, Python, AI/ML</li>
-        </ul>
-    </section>
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <h2>Skills</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">HTML, CSS, JavaScript</li>
+                    <li class="list-group-item">PHP, Laravel, Flask</li>
+                    <li class="list-group-item">React, Next.js</li>
+                    <li class="list-group-item">Docker, Firebase, Appwrite</li>
+                    <li class="list-group-item">Node.js, Python, AI/ML</li>
+                </ul>
+            </div>
+        </div>
 
-    <section>
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/mrsandipmandal/project1" target="_blank">Project 1</a> - Description of project one.</li>
-            <li><a href="https://github.com/mrsandipmandal/project2" target="_blank">Project 2</a> - Description of project two.</li>
-            <li><a href="https://github.com/mrsandipmandal/project3" target="_blank">Project 3</a> - Description of project three.</li>
-        </ul>
-    </section>
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <h2>Projects</h2>
+                <div class="list-group">
+                    <a href="https://github.com/mrsandipmandal/project1" target="_blank" class="list-group-item list-group-item-action">Project 1 - Description of project one.</a>
+                    <a href="https://github.com/mrsandipmandal/project2" target="_blank" class="list-group-item list-group-item-action">Project 2 - Description of project two.</a>
+                    <a href="https://github.com/mrsandipmandal/project3" target="_blank" class="list-group-item list-group-item-action">Project 3 - Description of project three.</a>
+                </div>
+            </div>
+        </div>
 
-    <section>
-        <h2>Contact Me</h2>
-        <p>If you'd like to get in touch, feel free to email me or connect with me on LinkedIn or GitHub.</p>
-    </section>
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h2>Contact Me</h2>
+                <p>If you'd like to get in touch, feel free to email me or connect with me on LinkedIn or GitHub.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
